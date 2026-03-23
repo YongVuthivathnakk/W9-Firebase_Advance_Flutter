@@ -8,8 +8,8 @@ import 'song_repository.dart';
 
 class SongRepositoryFirebase extends SongRepository {
   final Uri songsUri = Uri.https(
-    'fir-flutter-48baa-default-rtdb.asia-southeast1.firebasedatabase.app',
-    '/artist/songs.json',
+    'g1-project-13926-default-rtdb.asia-southeast1.firebasedatabase.app',
+    '/songs.json',
   );
 
   @override
@@ -18,10 +18,8 @@ class SongRepositoryFirebase extends SongRepository {
 
     if (response.statusCode == 200) {
       // 1 - Send the retrieved list of songs
-      Map<String, dynamic> songJson = json.decode(response.body);
-      return songJson.entries
-          .map((entry) => SongDto.fromJson(entry.key, entry.value))
-          .toList();
+      List<dynamic> songJson = json.decode(response.body);
+      return songJson.map((item) => SongDto.fromJson(item)).toList();
     } else {
       // 2- Throw expcetion if any issue
       throw Exception('Failed to load posts');

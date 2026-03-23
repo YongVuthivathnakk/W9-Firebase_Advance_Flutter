@@ -1,4 +1,5 @@
 import '../../model/songs/song.dart';
+import '../../model/songs/song.dart';
 
 class SongDto {
   static const String titleKey = 'title';
@@ -11,6 +12,7 @@ class SongDto {
     assert(json[durationKey] is int);
     assert(json[imageUrlKey] is String);
     return Song(
+      id: id,
       id: id,
       title: json[titleKey],
       artistId: id,
